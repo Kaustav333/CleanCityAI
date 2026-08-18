@@ -39,7 +39,17 @@ export default function RegisterPage() {
       })
 
       if (signUpError) {
-        setError(signUpError.message)
+        if (signUpError.message.toLowerCase().includes('already registered') || signUpError.message.toLowerCase().includes('already been registered')) {
+          setError('An account with this email already exists. Please sign in instead.')
+        } else {
+          setError(signUpError.message)
+        }
+        return
+      }
+
+      // Supabase may return a user with no identities if the email already exists
+      if (data.user && data.user.identities && data.user.identities.length === 0) {
+        setError('An account with this email already exists. Please sign in instead.')
         return
       }
 
@@ -85,6 +95,11 @@ export default function RegisterPage() {
             {error && (
               <div className="p-3 bg-red-50 border border-red-200 rounded-md text-sm text-red-700">
                 {error}
+                {error.includes('already exists') && (
+                  <Link href="/login" className="block mt-2 text-green-600 font-semibold hover:underline">
+                    → Go to Sign In
+                  </Link>
+                )}
               </div>
             )}
             {success && (
