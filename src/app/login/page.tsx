@@ -30,7 +30,11 @@ export default function LoginPage() {
       })
 
       if (signInError) {
-        setError(signInError.message)
+        if (signInError.message.toLowerCase().includes('invalid login credentials')) {
+          setError("Invalid email or password. If you don't have an account, please sign up first.")
+        } else {
+          setError(signInError.message)
+        }
         return
       }
 
@@ -74,6 +78,11 @@ export default function LoginPage() {
             {error && (
               <div className="p-3 bg-red-50 border border-red-200 rounded-md text-sm text-red-700">
                 {error}
+                {error.includes('sign up first') && (
+                  <Link href="/register" className="block mt-2 text-green-600 font-semibold hover:underline">
+                    → Go to Sign Up
+                  </Link>
+                )}
               </div>
             )}
             <div className="space-y-2">
