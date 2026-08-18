@@ -6,25 +6,29 @@ export default function Home() {
   return (
     <div className="flex flex-col items-center">
       {/* Hero Section */}
-      <section className="w-full py-24 md:py-32 lg:py-40 bg-gradient-to-b from-green-50 to-white flex justify-center text-center">
-        <div className="container px-4 md:px-6">
+      <section 
+        className="relative w-full py-24 md:py-32 lg:py-40 flex justify-center text-center bg-cover bg-center"
+        style={{ backgroundImage: "url('/hero-bg.jpg')" }}
+      >
+        <div className="absolute inset-0 bg-white/60 backdrop-blur-[2px]"></div>
+        <div className="container px-4 md:px-6 relative z-10">
           <div className="flex flex-col items-center space-y-4">
             <div className="space-y-2 max-w-[800px]">
-              <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl/none text-green-900">
-                Smarter Waste Management for a <span className="text-green-600">Cleaner City</span>
+              <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl/none text-green-900 drop-shadow-sm">
+                Smarter Waste Management for a <span className="text-green-700">Cleaner City</span>
               </h1>
-              <p className="mx-auto max-w-[700px] text-gray-600 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed pt-4">
+              <p className="mx-auto max-w-[700px] text-gray-800 font-medium md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed pt-4 drop-shadow-sm">
                 Join our citizen-powered platform. Find nearby dustbins, report issues, classify waste with AI, and earn rewards for keeping our city clean.
               </p>
             </div>
             <div className="space-x-4 pt-8">
               <Link href="/register">
-                <Button size="lg" className="bg-green-600 hover:bg-green-700 text-white px-8">
+                <Button size="lg" className="bg-green-700 hover:bg-green-800 text-white px-8 shadow-md">
                   Join Now
                 </Button>
               </Link>
               <Link href="/map">
-                <Button size="lg" variant="outline" className="border-green-600 text-green-600 hover:bg-green-50">
+                <Button size="lg" variant="outline" className="border-green-700 text-green-800 bg-white/80 hover:bg-white hover:text-green-900 shadow-sm backdrop-blur-sm">
                   Explore Map
                 </Button>
               </Link>
